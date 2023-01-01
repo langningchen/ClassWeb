@@ -1,0 +1,453 @@
+body {
+    position: relative;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+header {
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+    border-bottom: var(--Color-Black-Brighter) 1px solid;
+    width: 100%;
+    height: 50px;
+    background-color: var(--Color-White-Little-Darker);
+}
+
+#menu {
+    display: none;
+}
+
+header div {
+    position: fixed;
+    height: 50px;
+    width: 50px;
+    background-image: url("Icon.png");
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position-x: 0px;
+    background-position-y: 0px;
+}
+
+#Title {
+    position: fixed;
+    display: inline-block;
+    top: 10px;
+    left: 60px;
+    font-size: 20px;
+}
+
+header p {
+    display: none;
+}
+
+header ul {
+    position: fixed;
+    height: 50px;
+    margin-left: 200px;
+    top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+header ul li {
+    float: left;
+    list-style: none;
+    position: relative;
+    width: 60px;
+    height: 50px;
+    margin-left: 10px;
+    margin-top: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    transition: 0.25s;
+    border-left-color: var(--Color-White);
+    border-left-width: 3px;
+    border-left-style: solid;
+}
+
+header ul li:hover {
+    background-color: var(--Color-White-Darker);
+    border-left-color: var(--Color-Main);
+    border-left-width: 3px;
+    border-left-style: solid;
+}
+
+header ul li a {
+    position: relative;
+    height: 30px;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.Text,
+.ErrorText,
+.SuccessText {
+    position: relative;
+    margin: 5px;
+}
+
+.Text {
+    color: var(--Color-Black);
+}
+
+.ErrorText,
+.SuccessText {
+    font-weight: 900;
+    color: var(--Color-Real-White);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.ErrorText {
+    background-color: var(--Color-Dangerous);
+}
+
+.SuccessText {
+    background-color: var(--Color-Good);
+}
+
+.Input {
+    border-radius: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 11px;
+    padding-right: 11px;
+    margin: 5px;
+    transition-duration: 0.3s;
+    border-color: var(--Color-Main);
+    border-width: 1px;
+    color: var(--Color-Black);
+}
+
+.Input[type="text"],
+.Input[type="password"] {
+    height: 15px;
+    width: 200px;
+}
+
+.Input:hover {
+    border-color: var(--Color-Main-Brighter);
+    border-width: 1px !important;
+}
+
+.Input:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px var(--Color-Main-Brighter);
+    border-color: var(--Color-Main-Brighter);
+    border-width: 1px !important;
+}
+
+input[type="number"] {
+    width: 50px;
+}
+
+input[type="checkbox"] {
+    height: 15px;
+    width: 15px;
+}
+
+.MainButton {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 5px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--Color-Real-White);
+    text-align: center;
+    position: relative;
+    border: 1px solid transparent;
+    transition-duration: 0.3s;
+    background-color: var(--Color-Main);
+}
+
+.MainButton:hover {
+    background-color: var(--Color-Main-Brighter);
+}
+
+.SecondButton,
+.DangerousButton,
+.WarningButton,
+.GoodButton,
+.BadButton {
+    margin: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: var(--Color-White);
+    text-align: center;
+    position: relative;
+    transition: all .3s;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.SecondButton:hover,
+.DangerousButton:hover,
+.WarningButton:hover,
+.GoodButton:hover,
+.BadButton:hover {
+    color: var(--Color-Real-White);
+}
+
+.SecondButton {
+    color: var(--Color-Main);
+    border-color: var(--Color-Main);
+}
+
+.SecondButton:hover {
+    background-color: var(--Color-Main);
+}
+
+.DangerousButton {
+    color: var(--Color-Dangerous);
+    border-color: var(--Color-Dangerous);
+}
+
+.DangerousButton:hover {
+    background-color: var(--Color-Dangerous);
+}
+
+.WarningButton {
+    color: var(--Color-Warning);
+    border-color: var(--Color-Warning);
+}
+
+.WarningButton:hover {
+    background-color: var(--Color-Warning);
+}
+
+.GoodButton {
+    color: var(--Color-Good);
+    border-color: var(--Color-Good);
+}
+
+.GoodButton:hover {
+    background-color: var(--Color-Good);
+}
+
+.BadButton {
+    cursor: not-allowed;
+    color: var(--Color-Bad);
+    border-color: var(--Color-Bad);
+}
+
+.BadButton:hover {
+    background-color: var(--Color-Bad);
+}
+
+.Link {
+    line-height: 34px;
+    margin: 5px;
+    border-style: none;
+    text-decoration: none;
+    color: var(--Color-Main);
+    background-color: var(--Color-White);
+    transition-duration: 0.3s;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-bottom-color: var(--Color-Main);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.Link:hover {
+    border-radius: 4px;
+    background-color: var(--Color-Main);
+    color: var(--Color-Real-White);
+}
+
+.LoginForm {
+    left: 0%;
+    width: 100%;
+}
+
+.LoginForm .Tip {
+    font-size: 10px;
+    height: 20px;
+}
+
+.AuthCodeInput {
+    width: 100px !important;
+}
+
+.LoginInput {
+    height: 45px;
+}
+
+.AuthCodePic {
+    position: relative;
+    height: 30px;
+    width: 100px;
+}
+
+.OriginalUser,
+.TeacherUser,
+.AdminUser,
+.BadUser {
+    line-height: 34px;
+    margin: 5px;
+    border-style: none;
+    text-decoration: none;
+    color: var(--Color-Main);
+    background-color: var(--Color-White);
+    transition-duration: 0.3s;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.OriginalUser:hover,
+.TeacherUser:hover,
+.AdminUser:hover,
+.BadUser:hover {
+    border-radius: 4px;
+    background-color: var(--Color-Real-Main);
+    color: var(--Color-Real-White);
+}
+
+.OriginalUser {
+    color: var(--Color-User-Original);
+}
+
+.TeacherUser {
+    color: var(--Color-User-Teacher);
+}
+
+.AdminUser {
+    color: var(--Color-User-Admin);
+}
+
+.BadUser {
+    color: var(--Color-User-Bad);
+}
+
+.OriginalUser:hover {
+    background-color: var(--Color-User-Original);
+}
+
+.TeacherUser:hover {
+    background-color: var(--Color-User-Teacher);
+}
+
+.AdminUser:hover {
+    background-color: var(--Color-User-Admin);
+}
+
+.BadUser:hover {
+    background-color: var(--Color-User-Bad);
+}
+
+.HomeworkImage {
+    height: 100px;
+    margin: 5px;
+}
+
+.CheckHomeworkDiv {
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    background-color: var(--Color-White-Darker);
+}
+
+#DrawDiv>div:nth-child(2) {
+    position: fixed;
+    bottom: 0px;
+}
+
+#DrawDiv>div:nth-child(2) input {
+    height: 30px;
+    width: 30px;
+    position: relative;
+    margin-left: 0px;
+    bottom: 0px;
+}
+
+#DrawDiv>div:nth-child(2)>input:nth-child(6) {
+    position: fixed;
+    font-size: 15px;
+    width: 60px !important;
+    bottom: 0px;
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    widtH: 100%;
+    background-color: var(--Color-Black);
+    color: var(--Color-Real-White) !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.FooterLink {
+    color: var(--Color-Real-White);
+    position: relative;
+    margin: 5px;
+    text-decoration: none;
+}
+
+h3 {
+    margin-left: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+h4 {
+    margin-left: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+table {
+    position: relative;
+    width: 100%;
+    padding: 5px;
+}
+
+thead {
+    font-weight: 900;
+    font-size: 18px;
+}
+
+.Main {
+    margin-top: 60px;
+    margin-bottom: 35px;
+}
+
+pre {
+    display: inline-block;
+    margin: 5px;
+    background-color: var(--Color-White-Little-Darker);
+    padding: 2px;
+    border-radius: 3px;
+}
+
+textarea {
+    width: 80%;
+    height: 50px;
+}
+
+form {
+    margin-bottom: 10px;
+}

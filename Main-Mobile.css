@@ -1,0 +1,383 @@
+body {
+    position: relative;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+header {
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+    border-bottom: var(--Color-Black-Brighter) 1px solid;
+    width: 100%;
+    height: 50px;
+    background-color: var(--Color-White-Little-Darker);
+}
+
+#menu {
+    transition: 0s 0.5s ease;
+    z-index: 100;
+    display: none;
+    position: fixed;
+    top: 50px;
+    background-color: var(--Color-White-Little-Darker);
+}
+
+#menu ul {
+    position: relative;
+    padding-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#menu ul li {
+    margin-left: 5px;
+    margin-top: 5px;
+    list-style: none;
+    position: relative;
+    width: 50px;
+    height: 25px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: var(--Color-White-Little-Darker);
+    border-left-width: 3px;
+    border-left-style: solid;
+    border-left-color: var(--Color-Main);
+}
+
+#menu ul li a {
+    position: relative;
+    height: 15px;
+    left: 5px;
+    font-size: 15px;
+    text-align: center;
+}
+
+header p {
+    margin-left: 10px;
+    margin-top: 10px;
+    position: relative;
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+}
+
+header p span {
+    position: relative;
+    margin-top: 5px;
+    width: 30px;
+    height: 4px;
+    display: block;
+    float: left;
+    background-color: var(--Color-Main);
+}
+
+header div {
+    position: fixed;
+    height: 50px;
+    width: 50px;
+    top: 0px;
+    left: 50px;
+    background-image: url("Icon.png");
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position-x: 0px;
+    background-position-y: 0px;
+}
+
+#Title {
+    position: fixed;
+    display: inline-block;
+    top: 10px;
+    left: 110px;
+    font-size: 20px;
+}
+
+header ul {
+    display: none;
+}
+
+.Text,
+.ErrorText,
+.SuccessText {
+    position: relative;
+    margin: 10px;
+    font-size: 15px;
+}
+
+.Text {
+    color: var(--Color-Black);
+}
+
+.ErrorText,
+.SuccessText {
+    top: 10px;
+    font-weight: 900;
+    color: var(--Color-Real-White);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.ErrorText {
+    background-color: var(--Color-Dangerous);
+}
+
+.SuccessText {
+    background-color: var(--Color-Good);
+}
+
+.Input {
+    outline: 0;
+    border-radius: 3px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 11px;
+    padding-right: 11px;
+    margin: 5px;
+    transition-duration: 0.3s;
+    border-color: var(--Color-Main);
+    border-width: 1px;
+    color: var(--Color-Black);
+    font-size: 15px;
+    height: 20px;
+    width: 150px;
+}
+
+.Input:focus {
+    box-shadow: 0 0 0 2px var(--Color-Main-Brighter);
+    border-color: var(--Color-Main-Brighter);
+}
+
+input[type="number"] {
+    width: 50px;
+}
+
+input[type="checkbox"] {
+    height: 15px;
+    width: 15px;
+}
+
+.MainButton,
+.SecondButton,
+.DangerousButton,
+.WarningButton,
+.GoodButton,
+.BadButton {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 5px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--Color-Real-White);
+    text-align: center;
+    position: relative;
+    transition: all .3s;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 15px;
+}
+
+.MainButton {
+    border-color: var(--Color-Main);
+    background-color: var(--Color-Main);
+}
+
+.SecondButton,
+.DangerousButton,
+.WarningButton,
+.GoodButton,
+.BadButton {
+    background-color: var(--Color-White);
+}
+
+.SecondButton {
+    color: var(--Color-Main);
+    border-color: var(--Color-Main);
+}
+
+.DangerousButton {
+    color: var(--Color-Dangerous);
+    border-color: var(--Color-Dangerous);
+}
+
+.WarningButton {
+    color: var(--Color-Warning);
+    border-color: var(--Color-Warning);
+}
+
+.GoodButton {
+    color: var(--Color-Good);
+    border-color: var(--Color-Good);
+}
+
+.BadButton {
+    color: var(--Color-Bad);
+    border-color: var(--Color-Bad);
+}
+
+.Link {
+    line-height: 30px;
+    height: 30px;
+    margin: 5px;
+    border-style: none;
+    text-decoration: none;
+    color: var(--Color-Main);
+    background-color: var(--Color-White);
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-bottom-color: var(--Color-Main);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.LoginForm {
+    left: 0%;
+    width: 100%;
+}
+
+.LoginForm .Tip {
+    font-size: 10px !important;
+    height: 20px;
+}
+
+.AuthCodePic {
+    position: relative;
+    height: 30px;
+    width: 100px;
+    top: 7px;
+}
+
+.AuthCodeInput {
+    width: 50px;
+}
+
+.LoginInput {
+    height: 45px;
+}
+
+.OriginalUser,
+.TeacherUser,
+.AdminUser,
+.BadUser {
+    line-height: 30px;
+    height: 30px;
+    margin: 5px;
+    border-style: none;
+    text-decoration: none;
+    color: var(--Color-Main);
+    background-color: var(--Color-White);
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.OriginalUser {
+    color: var(--Color-User-Original);
+}
+
+.TeacherUser {
+    color: var(--Color-User-Teacher);
+}
+
+.AdminUser {
+    color: var(--Color-User-Admin);
+}
+
+.BadUser {
+    color: var(--Color-User-Bad);
+}
+
+.HomeworkImage {
+    height: 100px;
+    margin: 5px;
+}
+
+.CheckHomeworkDiv {
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    background-color: var(--Color-White-Darker);
+}
+
+#DrawDiv>div:nth-child(2) {
+    position: fixed;
+    bottom: 0px;
+}
+
+#DrawDiv>div:nth-child(2) input {
+    height: 20px;
+    width: 20px;
+    position: relative;
+    margin-left: 0px;
+    bottom: 0px;
+}
+
+#DrawDiv>div:nth-child(2)>input:nth-child(6) {
+    position: fixed;
+    font-size: 10px;
+    width: 40px !important;
+    bottom: 0px;
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: var(--Color-Black);
+    color: var(--Color-Real-White) !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.FooterLink {
+    color: var(--Color-Real-White);
+    position: relative;
+    margin: 2px;
+    text-decoration: none;
+}
+
+h3 {
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 25px;
+}
+
+h4 {
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    font-size: 20px;
+}
+
+.Main {
+    margin-top: 60px;
+    margin-bottom: 25px;
+}
+
+pre {
+    display: inline-block;
+    margin: 10px;
+    background-color: var(--Color-White-Little-Darker);
+    padding: 3px;
+    border-radius: 3px;
+}
+
+textarea {
+    width: 80%;
+}
+
+form {
+    margin-bottom: 10px;
+}

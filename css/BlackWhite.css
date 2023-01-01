@@ -1,0 +1,18 @@
+html {
+	--Color-White: rgb(255, 255, 255);
+	--Color-Real-White: rgb(255, 255, 255);
+	--Color-White-Little-Darker: rgb(255, 255, 255);
+	--Color-White-Darker: rgb(255, 255, 255);
+	--Color-Black: rgb(50, 50, 50);
+	--Color-Black-Brighter: rgb(0, 0, 0);
+	--Color-Main: rgb(0, 0, 0);
+	--Color-Main-Brighter: rgb(0, 0, 0);
+	--Color-Dangerous: rgb(0, 0, 0);
+	--Color-Warning: rgb(0, 0, 0);
+	--Color-Good: rgb(0, 0, 0);
+	--Color-Bad: rgb(0, 0, 0);
+	--Color-User-Original: rgb(0, 0, 0);
+	--Color-User-Teacher: rgb(0, 0, 0);
+	--Color-User-Admin: rgb(0, 0, 0);
+	--Color-User-Bad: rgb(0, 0, 0);
+}
