@@ -1,11 +1,13 @@
 <?php
-echo "<pre>";
-echo "\$_COOKIE = ";
-print_r($_COOKIE);
-echo "\$_SESSION = ";
-print_r($_SESSION);
-echo "</pre>";
-echo "<br />";
+if ($DebugMode) {
+    echo "<pre>";
+    echo "\$_COOKIE = ";
+    print_r($_COOKIE);
+    echo "\$_SESSION = ";
+    print_r($_SESSION);
+    echo "</pre>";
+    echo "<br />";
+}
 echo "</div>";
 if (isset($_SESSION["UID"]) && isset($_SESSION["UserName"])) {
     echo "<footer>";
@@ -17,3 +19,4 @@ echo "for (var i = 0; i < document.getElementsByClassName(\"AuthCodePic\").lengt
 echo "</script>";
 echo "</body>";
 echo "</html>";
+$Database->close();

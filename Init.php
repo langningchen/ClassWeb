@@ -156,6 +156,7 @@ $Database->query("CREATE TABLE PageCount                    (
         PageCountID                int(11)   NOT NULL                               ,
         URI                        text      NOT NULL                               ,
         UID                        int(11)   NOT NULL                               ,
+        IP                         text      NOT NULL                               ,
         Time                       timestamp NOT NULL DEFAULT '2000-01-01 00:00:00'
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; ");
 echo "<br />Creating table TempPassword... ";
@@ -183,6 +184,20 @@ $Database->query("CREATE TABLE NewMessageList               (
         Data                       text      NOT NULL                               ,
         URL                        text      NOT NULL                               ,
         Time                       timestamp NOT NULL DEFAULT '2000-01-01 00:00:00'
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; ");
+echo "<br />Creating table ErrorLog... ";
+FlushOutput();
+$Database->query("CREATE TABLE ErrorLog                     (
+        ErrorLogID                 int(11)   NOT NULL                               ,
+        ErrorType                  text      NOT NULL                               ,
+        ErrorString                text      NOT NULL                               ,
+        ErrorFile                  text      NOT NULL                               ,
+        ErrorLine                  int(11)   NOT NULL                               ,
+        ErrorContext               text      NOT NULL                               ,
+        ErrorTime                  timestamp NOT NULL DEFAULT '2000-01-01 00:00:00' ,
+        ErrorUID                   int(11)            DEFAULT NULL                  ,
+        ErrorIP                    text      NOT NULL                               ,
+        ErrorURI                   text      NOT NULL                               
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; ");
 
 echo "<br />Creating key in table ChatList... ";
@@ -233,6 +248,9 @@ $Database->query("ALTER TABLE UserList                ADD PRIMARY KEY (UID      
 echo "<br />Creating key in table NewMessageList... ";
 FlushOutput();
 $Database->query("ALTER TABLE NewMessageList          ADD PRIMARY KEY (NewMessageID         ), ADD UNIQUE KEY NewMessageID          (NewMessageID         ); ");
+echo "<br />Creating key in table ErrorLog... ";
+FlushOutput();
+$Database->query("ALTER TABLE ErrorLog                ADD PRIMARY KEY (ErrorLogID           ), ADD UNIQUE KEY ErrorLogID            (ErrorLogID           ); ");
 
 
 echo "<br />Creating auto increment in table ChatList... ";
@@ -283,6 +301,9 @@ $Database->query("ALTER TABLE UserList                MODIFY UID                
 echo "<br />Creating auto increment in table NewMessageList... ";
 FlushOutput();
 $Database->query("ALTER TABLE NewMessageList          MODIFY NewMessageID          int(11) NOT NULL AUTO_INCREMENT; ");
+echo "<br />Creating auto increment in table ErrorLog... ";
+FlushOutput();
+$Database->query("ALTER TABLE ErrorLog                MODIFY ErrorLogID            int(11) NOT NULL AUTO_INCREMENT; ");
 
 $MailContent = "langningc2009.ml Init log: <br />";
 for ($i = 0; $i < count($PreConfigUsers); $i++) {
@@ -303,6 +324,7 @@ $Mailer->Subject = "Init log";
 $Mailer->Body = $MailContent;
 $Mailer->send();
 
+$ClassMember = "";
 for ($Index = 1; $Index <= 50; $Index++) {
     FlushOutput();
     $UserName = "23";
@@ -320,13 +342,14 @@ for ($Index = 1; $Index <= 50; $Index++) {
     $DatabaseQuery = $Database->prepare("INSERT INTO UserList(UserName, Password, UserType) VALUES (?, ?, ?)");
     $DatabaseQuery->bind_param("ssi", $UserName, $Password, $UserType);
     $DatabaseQuery->execute();
+    $ClassMember .= $DatabaseQuery->insert_id . ",";
 }
 echo "<br />Creating class... ";
 FlushOutput();
 $ClassName = "建平西校初二23班";
 $ClassAdmin = "5";
 $ClassTeacher = "6,7";
-$ClassMember = "8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57";
+$ClassMember = substr($ClassMember, 0, strlen($ClassMember) - 1);
 $DatabaseQuery = $Database->prepare("INSERT INTO ClassList(ClassName, ClassAdmin, ClassTeacher, ClassMember) VALUES (?,?,?,?)");
 $DatabaseQuery->bind_param("ssss", $ClassName, $ClassAdmin, $ClassTeacher, $ClassMember);
 $DatabaseQuery->execute();

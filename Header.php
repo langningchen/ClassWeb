@@ -28,10 +28,10 @@ echo "<html lang=\"zh\">";
 echo "<head>";
 echo "<meta charset=\"utf-8\" />";
 echo "<meta name=\"viewport\" content=\"width=device-width\" />";
-if (!isset($_SERVER["HTTP_X_REQUESTED_WITH"]) || $_SERVER["HTTP_X_REQUESTED_WITH"] != "Debug") {
+$DebugMode = isset($_SERVER["HTTP_X_DEBUGGER_MODE"]) && Decrypt($_SERVER["HTTP_X_DEBUGGER_MODE"]) == "Debugger";
+if (!$DebugMode) {
     echo "<script src=\"NoConsole.js\"></script>";
 }
-// echo "<script>while(1){console.log(\"BUG\")}</script>";
 // echo "<style>*{filter:grayscale(100%);}</style>";
 if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE") || strpos($_SERVER['HTTP_USER_AGENT'], "Triden")) {
     echo "<style>@import \"css/Ordinary.css\";</style>";
@@ -46,12 +46,12 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE") || strpos($_SERVER['HTTP_USER_AG
     echo "</html>";
     die();
 }
-// if (!isset($_SERVER['HTTPS'])) {
-//     echo "<script>";
-//     echo "window.location='https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "';";
-//     echo "</script>";
-//     die();
-// }
+if (!isset($_SERVER['HTTPS'])) {
+    echo "<script>";
+    echo "window.location='https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "';";
+    echo "</script>";
+    die();
+}
 echo "<style>@import \"css/Ordinary.css\";</style>";
 if (is_mobile())
     echo "<style>@import \"Main-Mobile.css\";</style>";
@@ -73,6 +73,8 @@ $TitleList["ConfigCaptcha.php"] = "管理图片验证码";
 $TitleList["ConfigChat.php"] = "管理私聊";
 $TitleList["ConfigClass.php"] = "管理班级";
 $TitleList["ConfigDatabase.php"] = "管理数据库";
+$TitleList["ConfigError.php"] = "管理错误";
+$TitleList["ConfigErrors.php"] = "管理错误日志";
 $TitleList["ConfigNotice.php"] = "管理公告";
 $TitleList["ConfigPageCount.php"] = "管理页面访问量";
 $TitleList["ConfigPassword.php"] = "管理密码";
@@ -97,6 +99,7 @@ $TitleList["Notice.php"] = "公告";
 $TitleList["Notices.php"] = "公告列表";
 $TitleList["PasswordRequirement.php"] = "密码设置要求";
 $TitleList["Settings.php"] = "设置";
+$TitleList["Test.php"] = "测试";
 $TitleList["Upload.php"] = "上传文件";
 $TitleList["UploadClockIn.php"] = "提交打卡";
 $TitleList["UploadHomework.php"] = "提交作业";
@@ -154,15 +157,21 @@ if (isset($_SESSION["UID"]) && isset($_SESSION["UserName"]) && isset($_SESSION["
 echo "</ul>";
 echo "</header>";
 echo "<div class=\"Main\">";
-echo "<pre>";
-echo "\$_COOKIE = ";
-print_r($_COOKIE);
-echo "\$_SESSION = ";
-print_r($_SESSION);
-echo "\$_POST = ";
-print_r($_POST);
-echo "\$_GET = ";
-print_r($_GET);
-echo "</pre>";
-echo "<br />";
+if ($DebugMode) {
+    echo "<pre>";
+    echo "\$_COOKIE = ";
+    print_r($_COOKIE);
+    echo "\$_FILES = ";
+    print_r($_FILES);
+    echo "\$_ENV = ";
+    print_r($_ENV);
+    echo "\$_SESSION = ";
+    print_r($_SESSION);
+    echo "\$_POST = ";
+    print_r($_POST);
+    echo "\$_GET = ";
+    print_r($_GET);
+    echo "</pre>";
+    echo "<br />";
+}
 echo "<h3>" . $TitleList[basename($_SERVER['PHP_SELF'])] . "</h3>";

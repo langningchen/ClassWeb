@@ -28,11 +28,14 @@ echo "<thead>";
 echo "<td style=\"width: 10%; \">";
 CreateText("编号");
 echo "</td>";
-echo "<td style=\"width: 50%; \">";
+echo "<td style=\"width: 30%; \">";
 CreateText("页面");
 echo "</td>";
 echo "<td style=\"width: 20%; \">";
 CreateText("用户");
+echo "</td>";
+echo "<td style=\"width: 20%; \">";
+CreateText("IP");
 echo "</td>";
 echo "<td style=\"width: 20%; \">";
 CreateText("时间");
@@ -60,6 +63,9 @@ for ($i = 0; $i < $Result->num_rows; $i++) {
     echo "</td>";
     echo "<td>";
     CreateText($RowData[3]);
+    echo "</td>";
+    echo "<td>";
+    CreateText($RowData[4]);
     echo "</td>";
     echo "</tr>";
 }

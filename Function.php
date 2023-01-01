@@ -8,7 +8,7 @@ if ($Database->connect_error) {
     die();
 }
 $Database->query("USE " . $DataBaseName);
-function SanitizeString(string $String): string
+function SanitizeString($String): string
 {
     $String = stripslashes($String);
     $String = htmlentities($String);
@@ -474,8 +474,9 @@ function IsPicture(string $FileName): bool
         strpos($FileName, "webp") === false
     );
 }
-function ErrorHandler($ErrorNumber, $ErrorString, $ErrorFile, $ErrorLine, $error_context): bool
+function ErrorHandler($ErrorNumber, $ErrorString, $ErrorFile, $ErrorLine): bool
 {
+    global $DebugMode;
     $ErrorName = array();
     $ErrorName[E_WARNING] = "运行时警告";
     $ErrorName[E_NOTICE] = "运行时通知";
@@ -486,16 +487,51 @@ function ErrorHandler($ErrorNumber, $ErrorString, $ErrorFile, $ErrorLine, $error
     $ErrorName[E_USER_NOTICE] = "用户生成的通知消息";
     $ErrorName[E_STRICT] = "运行时产生的提醒信息";
     $ErrorName[E_RECOVERABLE_ERROR] = "可恢复的致命错误";
-    CreateErrorText("系统发生" . $ErrorName[$ErrorNumber]);
-    echo "<br />";
-    echo "<br />";
-    CreateText("内容：");
-    echo "<br />";
-    echo "<pre>";
-    $Temp = Encrypt(json_encode(array($ErrorString, $ErrorFile, $ErrorLine, $error_context)));
-    echo $Temp . "<br />";
-    print_r(json_decode(Decrypt($Temp)));
-    echo "</pre>";
+    if ($DebugMode) {
+        CreateErrorText($ErrorName[$ErrorNumber] . "：" . $ErrorString);
+        echo "<br />";
+        echo "<br />";
+        CreateText("错误文件：" . $ErrorFile . ":" . $ErrorLine);
+        echo "<br />";
+        CreateText("错误堆栈：");
+        echo "<br />";
+        echo "<pre>";
+        print_r(debug_backtrace());
+        echo "</pre>";
+    } else {
+        CreateErrorText("系统出现了" . $ErrorName[$ErrorNumber]);
+        echo "<br />";
+        echo "<br />";
+        global $Database;
+        $DatabaseQuery = $Database->prepare("SELECT ErrorLogID FROM ErrorLog WHERE ErrorString=? AND ErrorFile=? AND ErrorLine=? AND ErrorIP=?");
+        $DatabaseQuery->bind_param("ssss", $ErrorString, $ErrorFile, $ErrorLine, $_SERVER["REMOTE_ADDR"]);
+        $DatabaseQuery->execute();
+        $Result = $DatabaseQuery->get_result();
+        $ErrorID = 0;
+        if ($Result->num_rows != 0) {
+            $Result->data_seek(0);
+            $RowData = $Result->fetch_array(MYSQLI_NUM);
+            CreateSuccessText("相同的内容在之前已经被记录");
+            echo "<br />";
+            echo "<br />";
+            CreateText("请不要重复提交同样的内容以避免浪费服务器资源并且造成不必要的麻烦");
+            $ErrorID = $RowData[0];
+        } else {
+            $BackTrace = json_encode(debug_backtrace());
+            $RecordUID = isset($_SESSION["UID"]) ? $_SESSION["UID"] : 0;
+            $ErrorType = $ErrorName[$ErrorNumber];
+            $DatabaseQuery = $Database->prepare("INSERT INTO ErrorLog (ErrorType, ErrorString, ErrorFile, ErrorLine, ErrorContext, ErrorTime, ErrorUID, ErrorIP, ErrorURI) VALUES (?, ?, ?, ?, ?, current_timestamp(), ?, ?, ?)");
+            $DatabaseQuery->bind_param("ssssssss", $ErrorType, $ErrorString, $ErrorFile, $ErrorLine, $BackTrace, $RecordUID, $_SERVER["REMOTE_ADDR"], $_SERVER["REQUEST_URI"]);
+            $DatabaseQuery->execute();
+            CreateSuccessText("该内容已被记录，管理员会在看到后第一时间处理");
+            $ErrorID = $DatabaseQuery->insert_id;
+        }
+        echo "<br />";
+        echo "<br />";
+        CreateText("您也可以");
+        CreateLink("mailto:langningc2009.ml@outlook.com?subject=请修复错误&body=错误编号：" . $ErrorID . "%0D%0A错误类型：" . $ErrorName[$ErrorNumber] . "%0D%0A错误网址：" . $_SERVER["REQUEST_URI"], "点击这里");
+        CreateText("提醒管理员修复此信息/警告/错误");
+    }
     echo "<br />";
     echo "<br />";
     return true;
